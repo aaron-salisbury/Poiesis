@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Poiesis.View.MainProcessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             DataContext="{Binding MainProcessVM, Source={StaticResource Locator}}"
+             d:DesignHeight="325" d:DesignWidth="295">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="0" FontSize="10" Header="Run Process">
+            <xctk:IconButton Icon="{StaticResource ImgDataTransfer}" Background="#FF39E93E" Command="{Binding ExecuteTaskCommand}" />
+        </GroupBox>
+
+        <xctk:BusyIndicator Grid.Column="0" Grid.Row="1" BusyContent="{Binding MainProcess.CurrentProcess}" IsBusy="{Binding IsBusy}" Background="{StaticResource PrimaryAppColorBrush}" Foreground="White" DisplayAfter="0" />
+    </Grid>
+</UserControl>
