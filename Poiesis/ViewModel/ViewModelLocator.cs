@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 
 namespace Poiesis.ViewModel
 {
@@ -9,7 +8,7 @@ namespace Poiesis.ViewModel
 
         static ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<ApplicationViewModel>();
             SimpleIoc.Default.Register<SelectDatabaseViewModel>();
             SimpleIoc.Default.Register<DatabaseAttributesViewModel>();
@@ -17,14 +16,14 @@ namespace Poiesis.ViewModel
             SimpleIoc.Default.Register<MainProcessViewModel>();
         }
 
-        public ApplicationViewModel ApplicationVM { get { return ServiceLocator.Current.GetInstance <ApplicationViewModel>(); } }
+        public ApplicationViewModel ApplicationVM { get { return SimpleIoc.Default.GetInstance <ApplicationViewModel>(); } }
 
-        public SelectDatabaseViewModel SelectDatabaseVM { get { return ServiceLocator.Current.GetInstance <SelectDatabaseViewModel>(); } }
+        public SelectDatabaseViewModel SelectDatabaseVM { get { return SimpleIoc.Default.GetInstance <SelectDatabaseViewModel>(); } }
 
-        public DatabaseAttributesViewModel DatabaseAttributesVM { get { return ServiceLocator.Current.GetInstance <DatabaseAttributesViewModel>(); } }
+        public DatabaseAttributesViewModel DatabaseAttributesVM { get { return SimpleIoc.Default.GetInstance <DatabaseAttributesViewModel>(); } }
 
-        public MainProcessViewModel MainProcessVM { get { return ServiceLocator.Current.GetInstance<MainProcessViewModel>(); } }
+        public MainProcessViewModel MainProcessVM { get { return SimpleIoc.Default.GetInstance<MainProcessViewModel>(); } }
 
-        public AboutViewModel AboutVM { get { return ServiceLocator.Current.GetInstance <AboutViewModel>(); } }
+        public AboutViewModel AboutVM { get { return SimpleIoc.Default.GetInstance <AboutViewModel>(); } }
     }
 }
