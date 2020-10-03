@@ -8,7 +8,6 @@ namespace Poiesis.ViewModel
 
         static ViewModelLocator()
         {
-            //ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<ApplicationViewModel>();
             SimpleIoc.Default.Register<SelectDatabaseViewModel>();
             SimpleIoc.Default.Register<DatabaseAttributesViewModel>();
