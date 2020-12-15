@@ -13,6 +13,7 @@ namespace PoiesisDB.App.ViewModels
 
         public DBWorkerViewModel()
         {
+            DBWorker = new DBWorker();
             ExecuteTaskCommand = new RelayCommand(async () => await InitiateProcessAsync(), () => !IsBusy);
         }
 
