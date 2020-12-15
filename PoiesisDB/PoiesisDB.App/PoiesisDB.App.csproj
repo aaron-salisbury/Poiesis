@@ -206,5 +206,8 @@
   <ItemGroup>
     <Resource Include="Base\Resources\SampleAppIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Test DB Setup.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
