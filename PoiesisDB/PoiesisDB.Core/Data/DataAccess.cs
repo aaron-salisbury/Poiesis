@@ -145,6 +145,14 @@ namespace PoiesisDB.Core.Data
                 Database sourceDatabase = sourceServer.Databases[sourceServer.ConnectionContext.DatabaseName];
                 Database destinationDatabase = destinationServer.Databases[destinationServer.ConnectionContext.DatabaseName];
 
+                foreach (Schema schema in sourceDatabase.Schemas)
+                {
+                    if (schema.IsSystemObject) { continue; }
+
+                    Microsoft.Data.SqlClient.SqlCommand sqlCommand = new Microsoft.Data.SqlClient.SqlCommand($"CREATE SCHEMA [{schema.Name}]", destinationConnection.SqlConnectionObject);
+                    sqlCommand.ExecuteNonQuery();
+                }
+
                 Transfer transfer = new Transfer(sourceDatabase)
                 {
                     DestinationServer = destinationConnection.ServerInstance,
@@ -162,6 +170,8 @@ namespace PoiesisDB.Core.Data
                 transfer.Options.WithDependencies = false;
                 transfer.Options.DriDefaults = true;
 
+                HashSet<string> schemaNames = new HashSet<string>();
+
                 foreach (TransferSchemaObject schemaObject in GetSqlObjects(sourceDatabase))
                 {
                     ResetTransfer(transfer);
@@ -170,7 +180,8 @@ namespace PoiesisDB.Core.Data
 
                     foreach (string script in transfer.ScriptTransfer())
                     {
-                        (new Microsoft.Data.SqlClient.SqlCommand(script, destinationConnection.SqlConnectionObject)).ExecuteNonQuery();
+                        Microsoft.Data.SqlClient.SqlCommand sqlCommand = new Microsoft.Data.SqlClient.SqlCommand(script, destinationConnection.SqlConnectionObject);
+                        sqlCommand.ExecuteNonQuery();
                     }
 
                     if (string.Equals(schemaObject.Type, "Table"))

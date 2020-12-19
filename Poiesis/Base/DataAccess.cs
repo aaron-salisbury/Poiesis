@@ -9,6 +9,7 @@ using System.IO;
 
 namespace Poiesis.Base
 {
+    // SAMPLE DATABASES: https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15&tabs=ssms
     public class DataAccess
     {
         public static List<string> GetLocalDatabaseNames(string dataSource, Logger logger)
@@ -145,6 +146,17 @@ namespace Poiesis.Base
                 Database sourceDatabase = sourceServer.Databases[sourceServer.ConnectionContext.DatabaseName];
                 Database destinationDatabase = destinationServer.Databases[destinationServer.ConnectionContext.DatabaseName];
 
+                foreach (Schema schema in sourceDatabase.Schemas)
+                {
+                    if (schema.IsSystemObject)
+                    { 
+                        continue;
+                    }
+
+                    SqlCommand sqlCommand = new SqlCommand($"CREATE SCHEMA [{schema.Name}]", destinationConnection.SqlConnectionObject);
+                    sqlCommand.ExecuteNonQuery();
+                }
+
                 Transfer transfer = new Transfer(sourceDatabase)
                 {
                     DestinationServer = destinationConnection.ServerInstance,
@@ -168,14 +180,27 @@ namespace Poiesis.Base
                     transfer.ObjectList.Clear();
                     transfer.ObjectList.Add(schemaObject.NamedSmoObject);
 
+                    string schema = null;
+
                     foreach (string script in transfer.ScriptTransfer())
                     {
-                        (new SqlCommand(script, destinationConnection.SqlConnectionObject)).ExecuteNonQuery();
+                        if (script.StartsWith("CREATE TABLE") || script.StartsWith("CREATE VIEW"))
+                        {
+                            int schemaStart = script.IndexOf('[') + 1;
+                            int schemaEnd = script.IndexOf(']');
+                            int length = schemaEnd - schemaStart;
+                            schema = script.Substring(schemaStart, length);
+                        }
+
+                        //TODO: When needed, CreateXMLSchema() https://docs.microsoft.com/en-us/sql/relational-databases/xml/view-a-stored-xml-schema-collection?view=sql-server-ver15
+
+                        SqlCommand sqlCommand = new SqlCommand(script, destinationConnection.SqlConnectionObject);
+                        sqlCommand.ExecuteNonQuery();
                     }
 
                     if (string.Equals(schemaObject.Type, "Table"))
                     {
-                        ApplyIndexesForeignKeysChecks(destinationDatabase, schemaObject.NamedSmoObject);
+                        ApplyIndexesForeignKeysChecks(destinationDatabase, schemaObject.NamedSmoObject, schema);
                     }
 
                     schemaObject.Complete = true;
@@ -338,9 +363,19 @@ namespace Poiesis.Base
             transfer.SourceTranslateChar = false;
         }
 
-        private static void ApplyIndexesForeignKeysChecks(Database destinationDatabase, NamedSmoObject namedSmoObject)
+        private static void CreateXMLSchema(Database database, string xmlSchemaName, string xmlSchemaText)
         {
-            Table destinationTable = destinationDatabase.Tables[namedSmoObject.Name];
+            XmlSchemaCollection xsc = new XmlSchemaCollection(database, xmlSchemaName)
+            {
+                Text = xmlSchemaText
+            };
+
+            xsc.Create();
+        }
+
+        private static void ApplyIndexesForeignKeysChecks(Database destinationDatabase, NamedSmoObject namedSmoObject, string schema)
+        {
+            Table destinationTable = destinationDatabase.Tables[namedSmoObject.Name, schema];
 
             #region Indexes
             foreach (Index sourceIndex in (namedSmoObject as Table).Indexes)
