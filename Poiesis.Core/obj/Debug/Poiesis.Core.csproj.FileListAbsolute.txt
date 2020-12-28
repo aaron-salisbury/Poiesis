@@ -1,0 +1,8 @@
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Poiesis.Core.dll
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Poiesis.Core.pdb
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Serilog.dll
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Serilog.xml
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.csproj.CoreCompileInputs.cache
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.csproj.CopyComplete
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.dll
+C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.pdb
