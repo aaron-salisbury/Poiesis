@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Poiesis.App.Views.Workflow.SourceDBSelectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="450"
+             DataContext="{Binding SourceDBSelectionViewModel, Source={StaticResource Locator}}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" /> <!-- Form stack -->
+            <RowDefinition Height="*" /> <!-- Tables grid -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Label Content="Server Name" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Manager.SourceDatabase.DataSource, Mode=TwoWay}" Width="342" />
+                <Button Content="Load" Command="{Binding LoadDatabasesCommand}" Margin="5,0,0,0" />
+            </StackPanel>
+
+            <Label Content="Select Local Database" Margin="0,32,0,0" />
+        </StackPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Manager.LocalDatabaseNames, Mode=TwoWay}" SelectedItem="{Binding SelectedLocalDatabaseName, Mode=TwoWay}" 
+                 ScrollViewer.VerticalScrollBarVisibility="Visible" BorderThickness="1" />
+
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <ProgressBar Minimum="0" Maximum="1" Height="16" IsIndeterminate="True" Visibility="{Binding ProgressBarVisibility}" />
+
+            <Button 
+                Content="Next" 
+                IsEnabled="{Binding CanRunProcess, Mode=TwoWay}" 
+                Command="{Binding DisplayDatabaseAttributesCommand}" 
+                HorizontalAlignment="Left" 
+                Margin="0,5,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

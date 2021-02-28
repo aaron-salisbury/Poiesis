@@ -9,7 +9,7 @@
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         Height="607" MinWidth="937"
         WindowStartupLocation="CenterScreen"
-        Icon="/Base/Resources/SampleAppIcon.ico"
+        Icon="/Base/Resources/Poiesis-Icon.ico"
         ContentSource="/Views/Introduction.xaml"
         DataContext="{Binding ShellWindowViewModel, Source={StaticResource Locator}}"
         Title="{Binding Title}" IsTitleVisible="True"
@@ -21,9 +21,9 @@
                 <mui:Link DisplayName="Introduction" Source="/Views/Introduction.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="Log">
+        <mui:LinkGroup DisplayName="Workflow">
             <mui:LinkGroup.Links>
-                <mui:Link DisplayName="Messages" Source="/Views/Log.xaml" />
+                <mui:Link DisplayName="Clone DB Process" Source="/Views/Workflow/WorkflowShell.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
         <mui:LinkGroup DisplayName="Settings" GroupKey="settings">

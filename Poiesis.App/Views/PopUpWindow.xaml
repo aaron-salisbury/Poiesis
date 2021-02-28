@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Poiesis.App.Views"
         xmlns:mui="http://firstfloorsoftware.com/ModernUI"
         mc:Ignorable="d"
-        Icon="/Base/Resources/SampleAppIcon.ico"
+        Icon="/Base/Resources/Poiesis-Icon.ico"
         Title="PopUpWindow" Height="450" Width="800"
         SizeToContent="WidthAndHeight">
 

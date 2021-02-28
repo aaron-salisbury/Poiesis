@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.App\App.xaml
-8810814792
+11252292720
 
-231541292029
+31271601454
 69-337082610
-Base\Resources\Styles.xaml;ShellWindow.xaml;Views\Introduction.xaml;Views\Log.xaml;Views\PopUpWindow.xaml;Views\Settings.xaml;Views\SettingsAppearance.xaml;Views\SuccessModal.xaml;
+Base\Resources\Styles.xaml;ShellWindow.xaml;Views\Introduction.xaml;Views\Log.xaml;Views\PopUpWindow.xaml;Views\Settings.xaml;Views\SettingsAppearance.xaml;Views\SuccessModal.xaml;Views\Workflow\DatabaseAttributesView.xaml;Views\Workflow\SourceDBSelectionView.xaml;Views\Workflow\WorkflowShell.xaml;
 
 False
 
