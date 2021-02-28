@@ -9,7 +9,6 @@ C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Micro
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Microsoft.SqlServer.SqlEnum.dll
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Serilog.dll
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\bin\Debug\Serilog.xml
-C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.csprojAssemblyReference.cache
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.csproj.CoreCompileInputs.cache
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.csproj.CopyComplete
 C:\Users\aaron\source\repos\aaron-salisbury\Poiesis\Poiesis.Core\obj\Debug\Poiesis.Core.dll
