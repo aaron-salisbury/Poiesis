@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 
 namespace Poiesis.Core
 {
@@ -73,7 +74,7 @@ namespace Poiesis.Core
             {
                 _logger.Information("Gathering names of local databases.");
 
-                LocalDatabaseNames = new ObservableCollection<string>(DataAccess.GetLocalDatabaseNames(SourceDatabase.DataSource, _logger));
+                LocalDatabaseNames = new ObservableCollection<string>(DataAccess.GetLocalDatabaseNames(SourceDatabase.DataSource, _logger).OrderBy(ldn => ldn));
 
                 return LocalDatabaseNames != null && LocalDatabaseNames.Count > 0;
             }
@@ -109,10 +110,9 @@ namespace Poiesis.Core
 
                 NewDatabase = new DatabaseFacade
                 {
+                    Name = $"Poiesis_{DateTime.Now:yyyyMMddHHmmss}",
                     DataSource = SourceDatabase.DataSource
                 };
-
-                UpdateNewDatabaseSQLServerSystemFiles($"Poiesis_{DateTime.Now:yyyyMMddHHmmss}");
 
                 return true;
             }

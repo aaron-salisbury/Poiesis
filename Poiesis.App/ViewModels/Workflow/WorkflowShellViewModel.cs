@@ -1,4 +1,5 @@
-﻿using Poiesis.Core;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Poiesis.Core;
 
 namespace Poiesis.App.ViewModels.Workflow
 {
@@ -39,6 +40,9 @@ namespace Poiesis.App.ViewModels.Workflow
             Manager = new Manager(AppLogger);
             CurrentPageViewModel = new SourceDBSelectionViewModel();
             LogViewModel = new LogViewModel();
+
+            // Simple Navigation: rachel53461.wordpress.com/2011/12/18/navigation-with-mvvm-2/
+            Messenger.Default.Register<BaseViewModel>(this, "CurrentPageViewModel", message => { CurrentPageViewModel = message; });
         }
     }
 }

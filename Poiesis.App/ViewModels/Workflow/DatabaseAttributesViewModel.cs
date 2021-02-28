@@ -72,6 +72,8 @@ namespace Poiesis.App.ViewModels.Workflow
 
         public DatabaseAttributesViewModel()
         {
+            NewDatabaseName = Manager.NewDatabase.Name;
+
             RunProcessCommand = new RelayCommand(async () => await InitiateProcessAsync(Manager.InitiatePoiesis, RunProcessCommand, true), () => !IsBusy);
 
             TransferTypes = Enum.GetValues(typeof(Manager.TransferTypes))
